@@ -1,5 +1,6 @@
 # Je veux donc améliorer l’image du cerveau fleuri (le PNG) en m’inspirant des couleurs présentes dans le fichier SVG blob-scene-haikei.svg. 
-# Je vais d’abord analyser les couleurs dominantes du SVG, puis je vais les appliquer de manière harmonieuse à l’image du cerveau fleuri pour obtenir un rendu cohérent et esthétique.
+# Je vais d’abord analyser les couleurs dominantes du SVG, 
+# puis je vais les appliquer de manière harmonieuse à l’image du cerveau fleuri pour obtenir un rendu cohérent et esthétique.
 
 from PIL import Image
 import matplotlib.pyplot as plt
@@ -8,7 +9,7 @@ import cairosvg
 from io import BytesIO
 
 # Load the SVG file and convert it to PNG for analysis
-svg_path = "/mnt/data/blob-scene-haikei.svg"
+svg_path = /workspaces/Modification_des_images/blob-scene-haikei.svg
 png_output = BytesIO()
 cairosvg.svg2png(url=svg_path, write_to=png_output)
 png_output.seek(0)

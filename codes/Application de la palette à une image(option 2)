@@ -7,7 +7,7 @@ from io import BytesIO
 from sklearn.cluster import KMeans
 
 # Re-load files
-svg_path = "/mnt/data/blob-scene-haikei.svg"
+svg_path = blob-scene-haikei.svg
 brain_image_path = "/mnt/data/ChatGPT Image 10 avr. 2025, 22_08_01.png"
 
 # Convert SVG to PNG
