@@ -1,0 +1,57 @@
+# Je veux donc améliorer l’image du cerveau fleuri (le PNG) en m’inspirant des couleurs présentes dans le fichier SVG blob-scene-haikei.svg. 
+# Je vais d’abord analyser les couleurs dominantes du SVG, puis je vais les appliquer de manière harmonieuse à l’image du cerveau fleuri pour obtenir un rendu cohérent et esthétique.
+
+from PIL import Image
+import matplotlib.pyplot as plt
+import numpy as np
+import cairosvg
+from io import BytesIO
+
+# Load the SVG file and convert it to PNG for analysis
+svg_path = "/mnt/data/blob-scene-haikei.svg"
+png_output = BytesIO()
+cairosvg.svg2png(url=svg_path, write_to=png_output)
+png_output.seek(0)
+
+# Open the PNG image from the SVG
+svg_image = Image.open(png_output).convert("RGB")
+
+# Resize for faster processing
+small_image = svg_image.resize((100, 100))
+pixels = np.array(small_image).reshape(-1, 3)
+
+# Display the image and its dominant colors using KMeans clustering
+from sklearn.cluster import KMeans
+
+# Use KMeans to find dominant colors
+kmeans = KMeans(n_clusters=5, random_state=0).fit(pixels)
+colors = kmeans.cluster_centers_.astype(int)
+
+# Show the dominant colors
+fig, ax = plt.subplots(1, 6, figsize=(12, 2))
+ax[0].imshow(small_image)
+ax[0].axis('off')
+ax[0].set_title("SVG Preview")
+
+for i in range(5):
+    swatch = np.zeros((100, 100, 3), dtype=int)
+    swatch[:, :] = colors[i]
+    ax[i+1].imshow(swatch.astype(np.uint8))
+    ax[i+1].axis('off')
+    ax[i+1].set_title(f"Color {i+1}")
+
+plt.tight_layout()
+plt.show()
+
+colors
+
+
+# Voici les 5 couleurs dominantes que j’ai extraites du fichier SVG blob-scene-haikei.svg :
+# Bleu doux (≈ #5d88d9)
+# Rose violacé (≈ #be75ab)
+# Jaune-orangé pâle (≈ #f0c481)
+# Vert menthe (≈ #8dd9b3)
+# Gris-bleuté doux (≈ #b8c3e1)
+# Je vais maintenant appliquer une palette inspirée de ces teintes à l’image du cerveau fleuri, pour que tout s’accorde visuellement dans le même style. 
+# C’est parti pour la transformation ! 🎨🧠🌼
+
